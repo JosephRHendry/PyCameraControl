@@ -86,7 +86,7 @@ class CameraControl:
         self.oInputGhostingEffect = pygwidgets.TextCheckBox(self.window, (startingx + 145, 30), 'Ghosting effect', value=self.ghosting_active)
         self.button_array.append(self.oInputGhostingEffect)
 
-        self.oInputFlashbackEffect = pygwidgets.TextCheckBox(self.window, (startingx + 145, 45), 'Flashback effect', value=self.flashback_active)
+        self.oInputFlashbackEffect = pygwidgets.TextCheckBox(self.window, (startingx + 145, 45), 'Dream sequence', value=self.flashback_active)
         self.button_array.append(self.oInputFlashbackEffect)
         
         self.oInputGrayscale = pygwidgets.TextCheckBox(self.window, (startingx + 145, 60), 'Grayscale', value=self.threshold_active)
