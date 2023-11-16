@@ -152,7 +152,9 @@ class CameraControl:
                 # print(self.flashback_dict['x_offset'])
                 if col + self.flashback_dict['x_offset'] < self.window_width and col + self.flashback_dict['x_offset'] > 0:
                     if row + self.flashback_dict['y_offset'] < self.window_height:
-                        alt_frame[col + self.flashback_dict['x_offset']][row + self.flashback_dict['y_offset']] = frame[col][row]
+                        # Switching to np's array.item and array.itemset as it should be faster
+                        #alt_frame.itemset(( col + self.flashback_dict['x_offset'], row + self.flashback_dict['y_offset']), frame[col][row])
+                        alt_frame.itemset(( col + self.flashback_dict['x_offset'], row + self.flashback_dict['y_offset']), frame.item(col,row))
                         
                 row-=1
                 # For traingular zig zags remove self.flashback_dict['x_offset'] = int(100 * math.cos( (((2 * math.pi) / x_max)) * self.timer)) above
@@ -184,9 +186,9 @@ class CameraControl:
                 if col + self.ghosting_dict['x_offset'] < self.window_width:
                     if row + self.ghosting_dict['y_offset'] < self.window_height:
                         # alt_frame[col][row]+=10500 # adjust the hue of the ghosting effect 
-                        # alt_frame[col + self.ghosting_dict['x_offset']][row+ self.ghosting_dict['y_offset']] = alt_frame[col][row] 
-                        # Switching to faster "itemset" method below:
-                        alt_frame.itemset(( col + self.flashback_dict['x_offset'], row + self.flashback_dict['y_offset']), frame[col][row])
+                        alt_frame.itemset((col + self.ghosting_dict['x_offset'],row+ self.ghosting_dict['y_offset']),  alt_frame.item(col, row))
+                        
+                        
                     
                 self.ghosting_dict['x_offset']+=2
                 if self.ghosting_dict['x_offset'] > 400:
