@@ -1,3 +1,4 @@
+# Sections/Template of code adapted from Object Oriented Python by Irv Kalb
 # 1 - Import packages
 import sys
 import pygame
