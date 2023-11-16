@@ -184,7 +184,9 @@ class CameraControl:
                 if col + self.ghosting_dict['x_offset'] < self.window_width:
                     if row + self.ghosting_dict['y_offset'] < self.window_height:
                         # alt_frame[col][row]+=10500 # adjust the hue of the ghosting effect 
-                        alt_frame[col + self.ghosting_dict['x_offset']][row+ self.ghosting_dict['y_offset']] = alt_frame[col][row]
+                        # alt_frame[col + self.ghosting_dict['x_offset']][row+ self.ghosting_dict['y_offset']] = alt_frame[col][row] 
+                        # Switching to faster "itemset" method below:
+                        alt_frame.itemset(( col + self.flashback_dict['x_offset'], row + self.flashback_dict['y_offset']), frame[col][row])
                     
                 self.ghosting_dict['x_offset']+=2
                 if self.ghosting_dict['x_offset'] > 400:
